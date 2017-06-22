@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1"></meta>
+		<title th:text="${title}"></title>
+	</head>
+	<body>
+		<form action="#" th:action="@{/saveUser}" th:object="${user}" method="post" >
+			<input type="hidden" th:field="*{id}"></input>
+			<table>
+				<tr>
+					<td>Username: </td>
+					<td><input type="text" th:field="*{username}"></input></td>
+				</tr>
+				<tr>
+					<td>Gender: </td>
+					<td>
+						Male<input type="radio" th:field="*{gender}" th:value="1"></input>
+						Female<input type="radio" th:field="*{gender}" th:value="0"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>Status: </td>
+					<td>
+						Enable <input type="radio"  th:field="*{status}" th:value="1"></input>
+						Disable <input type="radio"  th:field="*{status}" th:value="0"></input>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Save"></input></td>
+					<td><a th:href="@{/}"><button>Back to List</button></a></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

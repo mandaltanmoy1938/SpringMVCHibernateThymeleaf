@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1"></meta>
+		<title>User List</title>
+		<style>
+			table, th, td {
+	    		border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="/crypto"><button>Upload a file to encryt and decryt</button></a>
+		<a href="/createUser"><button>Create User</button></a>
+		<a th:href="@{/user/list.pdf}"><button>Export to pdf</button></a>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Id</th>
+					<th>Username</th>
+					<th>Gender</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody th:if = "${userList != null}">
+				<tr th:each = "user,index : ${userList}">
+					<td th:text = "${index.count}"></td>
+					<td th:text = "${user.id}"></td>
+					<td th:text = "${user.username}"></td>
+					<td th:text = " ${user.gender}? Male : Female"></td>
+					<td th:text = " ${user.status}? Enable : Disable"></td>
+					<td>
+					<a th:href="@{|/updateUser/${user.id}|}"><button>Edit</button></a>
+					<a th:href="@{|/deleteUser/${user.id}|}"><button onclick="confirm('Want to delete?')">Delete</button></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
